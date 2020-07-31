@@ -12,6 +12,10 @@ public class SortingHelper {
         long startTime = System.nanoTime();
         if(sortname.equals("SelectionSort"))
             SelectionSort.sort(arr);
+        else if (sortname.equals("InsertionSort"))
+            InsertionSort.sort(arr);
+        else if (sortname.equals("InsertionSort3"))
+            InsertionSort.sort3(arr);
         long endTime = System.nanoTime();
         double time = (endTime - startTime) / 1000000000.0;
         if(!SortingHelper.isSorted(arr))

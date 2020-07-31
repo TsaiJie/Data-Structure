@@ -1,7 +1,7 @@
 public class SelectionSort {
     private SelectionSort() {
     }
-
+    // 稳定的O(n2)
     public static <E extends Comparable<E>> void sort(E[] arr) {
         // arr[0...i) 是有序的， arr[i...n)  是无序的
         for (int i = 0; i < arr.length; i++) {
@@ -25,11 +25,9 @@ public class SelectionSort {
 
     public static void main(String[] args) {
         int[] dataSize = {10000, 100000};
-        for (int n: dataSize){
+        for (int n : dataSize) {
             Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
             SortingHelper.sortTest("SelectionSort", arr);
         }
-
-
     }
 }
