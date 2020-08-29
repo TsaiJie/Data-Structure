@@ -23,19 +23,26 @@ public class SelectionSortGeneric {
     }
 
     public static void main(String[] args) {
-        Integer[] arr = {1, 4, 2, 3, 6, 5};
-        SelectionSortGeneric.sort(arr);
-        for (int e : arr)
-            System.out.print(e + " ");
-        System.out.println();
-        Student[] students = {
-                new Student("A", 94),
-                new Student("B", 99),
-                new Student("C", 88)
-        };
-        SelectionSortGeneric.sort(students);
-        for (Student s : students)
-            System.out.print(s.toString() + " ");
-        System.out.println();
+//        Integer[] arr = {1, 4, 2, 3, 6, 5};
+//        SelectionSortGeneric.sort(arr);
+//        for (int e : arr)
+//            System.out.print(e + " ");
+//        System.out.println();
+//        Student[] students = {
+//                new Student("A", 94),
+//                new Student("B", 99),
+//                new Student("C", 88)
+//        };
+//        SelectionSortGeneric.sort(students);
+//        for (Student s : students)
+//            System.out.print(s.toString() + " ");
+//        System.out.println();
+        int[] dataSize = {10000, 100000};
+        for (int n : dataSize) {
+            Integer[] arr = ArrayGenerator.generateRandomArray(n, n);
+            SortingHelper.sortTest("SelectionSortGeneric", arr);
+        }
+
+
     }
 }
