@@ -109,4 +109,32 @@ public class Array {
         }
         data[index] = e;
     }
+
+    /**
+     * 查找是否包含某个元素
+     * @param e 查询的元素
+     * @return 是否存在
+     */
+    public boolean contains(int e) {
+        for (int i = 0; i < size; i ++){
+            if(data[i] == e) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 查找是否包含某个元素 返回的是下标的索引 如果没有就返回-1
+     * @param e 查询的元素
+     * @return 下标索引
+     */
+    public int find(int e) {
+        for (int i = 0; i < size; i ++){
+            if(data[i] == e) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
