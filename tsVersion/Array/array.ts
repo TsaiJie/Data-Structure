@@ -43,7 +43,7 @@ export default class MyArray<E> {
    */
   public add(index: number, e: E): void {
     if (this.size === this.data.length) {
-      throw new Error("Add failed. MyArray is full");
+      this.resize(2 * this.getCapacity())
     }
     if (index < 0 || index > this.size) {
       throw  new Error("Add failed. Require index>=0 and index<=size ");
@@ -102,6 +102,9 @@ export default class MyArray<E> {
     }
     this.size--;
     this.data[this.size] = null;
+    if (this.size == this.getCapacity() / 2){
+      this.resize(this.getCapacity() / 2)
+    }
     return ret;
   }
   
@@ -136,5 +139,9 @@ export default class MyArray<E> {
     }
     res += ']'
     return res;
+  }
+  
+  private resize(newCapacity: number):void {
+      this.data.length = newCapacity;
   }
 }

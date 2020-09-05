@@ -12,7 +12,7 @@ class Student {
   }
 }
 
-let arr = new MyArray<number>(20);
+let arr = new MyArray<number>();
 for (let i = 0; i < 10; i++){
   arr.addLast(i);
 }
