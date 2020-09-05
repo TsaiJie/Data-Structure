@@ -1,6 +1,6 @@
-class MyArray {
+export default class MyArray {
   private size: number;
-  private data: number[];
+  private data: number[] = [];
   
   /**
    *
@@ -53,5 +53,18 @@ class MyArray {
     }
     this.data[index] = e;
     this.size++;
+  }
+  
+  public toString(): string {
+    let res: string = `MyArray: size = ${this.size}, capacity = ${this.data.length} \n`;
+    res += '[';
+    for (let i = 0; i < this.size; i++) {
+      res += this.data[i];
+      if (i != this.size - 1) {
+        res += ', ';
+      }
+    }
+    res += ']'
+    return res;
   }
 }
