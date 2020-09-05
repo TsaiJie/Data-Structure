@@ -91,6 +91,39 @@ export default class MyArray {
     return -1;
   }
   
+  // 从数组中删除index位置的元素， 返回删除的元素
+  public remove(index: number): number {
+    if (index < 0 || index >= this.size) {
+      throw new Error("Remove failed. Index is illegal.");
+    }
+    const ret = this.data[index]
+    for (let i = index; i < this.size; i++) {
+      this.data[i] = this.data[i + 1];
+    }
+    this.size--;
+    return ret;
+  }
+  
+  // 从数组中删除第一个元素
+  public removeFirst(): number {
+    return this.remove(0);
+  }
+  
+  // 从数组中删除最后一个元素
+  public removeLast(): number {
+    return this.remove(this.size - 1);
+  }
+  
+  // 从数组中删除元素e，只删除一个e
+  public removeElement(e: number): boolean {
+    const index = this.find(e);
+    if (index != -1) {
+      this.remove(e);
+      return true;
+    }
+    return false;
+  }
+  
   public toString(): string {
     let res: string = `MyArray: size = ${this.size}, capacity = ${this.data.length} \n`;
     res += '[';
