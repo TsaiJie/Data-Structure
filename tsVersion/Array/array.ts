@@ -102,7 +102,7 @@ export default class MyArray<E> {
     }
     this.size--;
     this.data[this.size] = null;
-    if (this.size == this.getCapacity() / 2){
+    if (this.size == this.getCapacity() / 4 && this.getCapacity() / 2 != 0) {
       this.resize(this.getCapacity() / 2)
     }
     return ret;
@@ -141,7 +141,7 @@ export default class MyArray<E> {
     return res;
   }
   
-  private resize(newCapacity: number):void {
-      this.data.length = newCapacity;
+  private resize(newCapacity: number): void {
+    this.data.length = newCapacity;
   }
 }
