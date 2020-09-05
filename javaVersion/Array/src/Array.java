@@ -40,6 +40,7 @@ public class Array {
     public void addLast(int e) {
         add(size, e);
     }
+
     /**
      * 向所有的元素前添加一个元素
      *
@@ -68,5 +69,44 @@ public class Array {
         }
         data[index] = e;
         size++;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        res.append(String.format("Array: size = %d, capacity = %d\n", size, data.length));
+        res.append('[');
+        for (int i = 0; i < size; i++) {
+            res.append(data[i]);
+            if (i != size - 1) {
+                res.append(", ");
+            }
+        }
+        res.append(']');
+        return res.toString();
+    }
+
+    /**
+     * 获取index索引位置的元素
+     * @param index 索引的位置
+     * @return 返回的index的数据
+     */
+    public int get(int index){
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Get failed. Index is illegal!");
+        }
+        return data[index];
+    }
+
+    /**
+     * 更改index索引位置的元素
+     * @param index 索引的位置
+     * @param e 设置的元素
+     */
+    public void set(int index, int e){
+        if(index < 0 || index >= size){
+            throw new IllegalArgumentException("Set failed. Index is illegal!");
+        }
+        data[index] = e;
     }
 }
