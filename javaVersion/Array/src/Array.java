@@ -88,10 +88,11 @@ public class Array {
 
     /**
      * 获取index索引位置的元素
+     *
      * @param index 索引的位置
      * @return 返回的index的数据
      */
-    public int get(int index){
+    public int get(int index) {
         if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Index is illegal!");
         }
@@ -100,11 +101,12 @@ public class Array {
 
     /**
      * 更改index索引位置的元素
+     *
      * @param index 索引的位置
-     * @param e 设置的元素
+     * @param e     设置的元素
      */
-    public void set(int index, int e){
-        if(index < 0 || index >= size){
+    public void set(int index, int e) {
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Index is illegal!");
         }
         data[index] = e;
@@ -112,12 +114,13 @@ public class Array {
 
     /**
      * 查找是否包含某个元素
+     *
      * @param e 查询的元素
      * @return 是否存在
      */
     public boolean contains(int e) {
-        for (int i = 0; i < size; i ++){
-            if(data[i] == e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
                 return true;
             }
         }
@@ -126,15 +129,64 @@ public class Array {
 
     /**
      * 查找是否包含某个元素 返回的是下标的索引 如果没有就返回-1
+     *
      * @param e 查询的元素
      * @return 下标索引
      */
     public int find(int e) {
-        for (int i = 0; i < size; i ++){
-            if(data[i] == e) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == e) {
                 return i;
             }
         }
         return -1;
+    }
+
+    /**
+     * 删除index位置的元素，返回删除的元素
+     *
+     * @param index 索引
+     *
+     */
+    public int remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Remove failed. Index is illegal!");
+        }
+        int ret = data[index];
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = data[i];
+        }
+        size--;
+        return ret;
+    }
+
+    /**
+     * 从数组中删除第一个元素
+     *
+     */
+    public int removeFirst() {
+        return remove(0);
+    }
+
+    /**
+     * 从数组中删除最后一个元素
+     *
+     */
+    public int removeLast() {
+        return remove(size - 1);
+    }
+
+    /**
+     * 从数组中删除元素e 只删除一个
+     * @param e 删除的元素
+     */
+    public boolean removeElement(int e) {
+        int index = find(e);
+        if(index != -1){
+            remove(index);
+            return true;
+        }else {
+            return false;
+        }
     }
 }
