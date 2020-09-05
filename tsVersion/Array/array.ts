@@ -43,16 +43,32 @@ export default class MyArray {
    */
   public add(index: number, e: number): void {
     if (this.size === this.data.length) {
-      throw new Error("Add failed. MyArray is full")
+      throw new Error("Add failed. MyArray is full");
     }
     if (index < 0 || index > this.size) {
-      throw  new Error("Add failed. Require index>=0 and index<=size ")
+      throw  new Error("Add failed. Require index>=0 and index<=size ");
     }
     for (let i = this.size - 1; i >= index; i--) {
       this.data[i + 1] = this.data[i];
     }
     this.data[index] = e;
     this.size++;
+  }
+  
+  // 获取index索引位置的元素
+  public get(index: number): number {
+    if (index < 0 || index >= this.size) {
+      throw new Error("Get failed. Index is illegal.");
+    }
+    return this.data[index];
+  }
+  
+  // 设置index索引位置的元素
+  public set(index: number, e: number): void {
+    if (index < 0 || index >= this.size) {
+      throw new Error("Set failed. Index is illegal.");
+    }
+    this.data[index] = e;
   }
   
   public toString(): string {
