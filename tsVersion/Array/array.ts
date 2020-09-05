@@ -71,6 +71,26 @@ export default class MyArray {
     this.data[index] = e;
   }
   
+  // 查找数组中是否有元素e
+  public contains(e: number): boolean {
+    for (let i = 0; i < this.size; i++) {
+      if (this.data[i] === e) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  // 查找数组中元素e所在的索引， 如果不存在元素e， 则返回-1
+  public find(e: number): number {
+    for (let i = 0; i < this.size; i++) {
+      if (this.data[i] === e) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  
   public toString(): string {
     let res: string = `MyArray: size = ${this.size}, capacity = ${this.data.length} \n`;
     res += '[';
