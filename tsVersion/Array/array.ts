@@ -1,6 +1,6 @@
-export default class MyArray {
+export default class MyArray<E> {
   private size: number;
-  private data: number[] = [];
+  private data: E[] = [];
   
   /**
    *
@@ -27,12 +27,12 @@ export default class MyArray {
   }
   
   // 向所有元素后添加一个新元素
-  public addLast(e: number): void {
+  public addLast(e: E): void {
     this.add(this.size, e);
   }
   
   // 向所有元素后添加一个新元素
-  public addFirst(e: number): void {
+  public addFirst(e: E): void {
     this.add(0, e);
   }
   
@@ -41,7 +41,7 @@ export default class MyArray {
    * @param index
    * @param e
    */
-  public add(index: number, e: number): void {
+  public add(index: number, e: E): void {
     if (this.size === this.data.length) {
       throw new Error("Add failed. MyArray is full");
     }
@@ -56,7 +56,7 @@ export default class MyArray {
   }
   
   // 获取index索引位置的元素
-  public get(index: number): number {
+  public get(index: number): E {
     if (index < 0 || index >= this.size) {
       throw new Error("Get failed. Index is illegal.");
     }
@@ -64,7 +64,7 @@ export default class MyArray {
   }
   
   // 设置index索引位置的元素
-  public set(index: number, e: number): void {
+  public set(index: number, e: E): void {
     if (index < 0 || index >= this.size) {
       throw new Error("Set failed. Index is illegal.");
     }
@@ -72,7 +72,7 @@ export default class MyArray {
   }
   
   // 查找数组中是否有元素e
-  public contains(e: number): boolean {
+  public contains(e: E): boolean {
     for (let i = 0; i < this.size; i++) {
       if (this.data[i] === e) {
         return true;
@@ -82,9 +82,9 @@ export default class MyArray {
   }
   
   // 查找数组中元素e所在的索引， 如果不存在元素e， 则返回-1
-  public find(e: number): number {
+  public find(e: E): number {
     for (let i = 0; i < this.size; i++) {
-      if (this.data[i] === e) {
+      if (JSON.stringify(this.data[i]) === JSON.stringify(e)) {
         return i;
       }
     }
@@ -92,7 +92,7 @@ export default class MyArray {
   }
   
   // 从数组中删除index位置的元素， 返回删除的元素
-  public remove(index: number): number {
+  public remove(index: number): E {
     if (index < 0 || index >= this.size) {
       throw new Error("Remove failed. Index is illegal.");
     }
@@ -101,24 +101,25 @@ export default class MyArray {
       this.data[i] = this.data[i + 1];
     }
     this.size--;
+    this.data[this.size] = null;
     return ret;
   }
   
   // 从数组中删除第一个元素
-  public removeFirst(): number {
+  public removeFirst(): E {
     return this.remove(0);
   }
   
   // 从数组中删除最后一个元素
-  public removeLast(): number {
+  public removeLast(): E {
     return this.remove(this.size - 1);
   }
   
   // 从数组中删除元素e，只删除一个e
-  public removeElement(e: number): boolean {
+  public removeElement(e: E): boolean {
     const index = this.find(e);
     if (index != -1) {
-      this.remove(e);
+      this.remove(index);
       return true;
     }
     return false;

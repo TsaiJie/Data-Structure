@@ -1,6 +1,18 @@
 import MyArray from "./array";
 
-let arr = new MyArray(20);
+class Student {
+  private name: string;
+  private score: number;
+  constructor(studentName: string, studentScore: number) {
+    this.name = studentName;
+    this.score = studentScore;
+  }
+  public toString(): string {
+    return `Student(name:${this.name}, score:${this.score})`;
+  }
+}
+
+let arr = new MyArray<number>(20);
 for (let i = 0; i < 10; i++){
   arr.addLast(i);
 }
@@ -16,3 +28,10 @@ arr.removeElement(4);
 console.log(arr.toString());
 arr.removeFirst();
 console.log(arr.toString());
+
+let arrObj = new MyArray<Student>();
+arrObj.addLast(new Student("Alice", 100));
+arrObj.addLast(new Student("Alice1", 90));
+arrObj.addLast(new Student("Alice2", 80));
+console.log(arrObj.find(new Student("Alice1", 90)));
+console.log(arrObj.toString())
