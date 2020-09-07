@@ -63,6 +63,16 @@ export default class MyArray<E> {
     return this.data[index];
   }
   
+  // 获取最后一个元素
+  public getLast(): E {
+    return this.get(this.size - 1);
+  }
+  
+  // 获取第一个元素
+  public getFirst(): E {
+    return this.get(0)
+  }
+  
   // 设置index索引位置的元素
   public set(index: number, e: E): void {
     if (index < 0 || index >= this.size) {
