@@ -1,6 +1,6 @@
 import MyArray from "../Array/array";
 // 出队的时间复杂度是O（n）
-interface Queue<E> {
+export interface Queue<E> {
   getSize(): number;
   isEmpty(): boolean;
   enqueue(e: E): void;
