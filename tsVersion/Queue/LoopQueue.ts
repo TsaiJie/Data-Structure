@@ -4,7 +4,7 @@ import {Queue} from "./queue";
 // (tail+1) % length = front 循环队列为满
 // tail = (tail + 1) % length
 // front = (front + 1) % length
-class LoopQueue<E> implements Queue<E> {
+export default class LoopQueue<E> implements Queue<E> {
   private data: E[] = [];
   private front: number;
   private tail: number;
