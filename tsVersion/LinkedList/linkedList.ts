@@ -59,4 +59,67 @@ class LinkedList<E> {
     // this.head = node;
     this.add(0, e);
   }
+  
+  // 获取链表的第index的位置的元素
+  public get(index: number): E {
+    if (index < 0 || index > this.size) {
+      throw new Error("Get failed. Illegal index");
+    }
+    let cur = this.dummyHead.next;
+    for (let i = 0; i < index; i++) {
+      cur = cur.next;
+    }
+    return cur.e;
+  }
+  
+  public getFirst(): E {
+    return this.get(0);
+  }
+  
+  public getLast(): E {
+    return this.get(this.size - 1)
+  }
+  
+  // 修改链表中的第index个位置的元素为e
+  public set(index: number, e: E) {
+    if (index < 0 || index >= this.size) {
+      throw new Error("Set failed. Illegal index.")
+    }
+    let cur = this.dummyHead.next;
+    for (let i = 0; i < index; i++) {
+      cur = cur.next
+    }
+    cur.e = e;
+  }
+  
+  // 查找链表中是否存在元素e
+  public contains(e: E) {
+    let cur = this.dummyHead.next;
+    while (cur != null) {
+      if (cur.e === e) {
+        return true
+      }
+      cur = cur.next;
+    }
+    return false;
+  }
+  public toString():string {
+    let res = "";
+    let cur = this.dummyHead.next;
+    while (cur != null) {
+      res += `${cur} -> `;
+      cur = cur.next;
+    }
+    res += 'NULL';
+    return res. toString()
+  }
+  
 }
+
+let linkedList = new LinkedList<number>();
+for (let i = 0; i < 5; i++) {
+  linkedList.addFirst(i);
+  console.log(linkedList.toString());
+}
+linkedList.add(2,666)
+console.log(linkedList.toString());
