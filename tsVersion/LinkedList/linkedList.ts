@@ -12,7 +12,7 @@ class ListNode<E> {
   }
 }
 
-class LinkedList<E> {
+export default class LinkedList<E> {
   private dummyHead: ListNode<E>;
   private size: number;
   
@@ -113,6 +113,29 @@ class LinkedList<E> {
     res += 'NULL';
     return res. toString()
   }
+  // 从链表中删除index位置的元素，返回删除的元素
+  public remove(index: number): E {
+    if (index < 0 || index >= this.size) {
+      throw new Error("Remove failed. Index is illegal");
+    }
+    let prev = this.dummyHead;
+    for (let i = 0; i < index; i++) {
+      prev = prev.next;
+    }
+    const retNode = prev.next;
+    prev.next = retNode.next;
+    retNode.next = null;
+    this.size --;
+    return retNode.e;
+  }
+  // 删除第一个元素
+  public removeFirst(): E {
+    return this.remove(0);
+  }
+  // 删除最后一个元素
+  public removeLast(): E {
+    return this.remove(this.size - 1);
+  }
   
 }
 
@@ -122,4 +145,8 @@ for (let i = 0; i < 5; i++) {
   console.log(linkedList.toString());
 }
 linkedList.add(2,666)
+console.log(linkedList.toString());
+linkedList.removeFirst();
+console.log(linkedList.toString());
+linkedList.removeLast();
 console.log(linkedList.toString());

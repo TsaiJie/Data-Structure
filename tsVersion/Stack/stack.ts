@@ -1,6 +1,6 @@
 import MyArray from "../Array/array";
 
-interface Stack<E> {
+export interface Stack<E> {
   getSize(): number;
   
   isEmpty(): boolean;
