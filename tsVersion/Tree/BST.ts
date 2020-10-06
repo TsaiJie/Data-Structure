@@ -80,4 +80,22 @@ class BST {
     }
     return node;
   }
+
+  // 看二分搜索树中是否包含元素e
+  public contains(e: number): boolean {
+    return this.containsWithNode(this.root, e);
+  }
+  // 看以node为根的二分搜索树中是否含有元素e，递归
+  private containsWithNode(node: TreeNode, e: number): boolean {
+    if(node === null) {
+      return false;
+    }
+    if(e === node.e) {
+      return true;
+    }else if(e < node.e){
+      return this.containsWithNode(node.left, e);
+    }else {
+      return this.containsWithNode(node.right, e);
+    }
+  }
 }
