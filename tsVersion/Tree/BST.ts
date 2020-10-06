@@ -14,6 +14,7 @@ class BST {
   private root: TreeNode;
   private size: number;
   private res: string = '';
+  
   constructor() {
     this.root = null;
     this.size = 0;
@@ -114,6 +115,34 @@ class BST {
     this.preOrderWithNode(node.right);
   }
   
+  // 中序遍历
+  public inOrder(): void {
+    this.inOrderWithNode(this.root);
+  }
+  
+  private inOrderWithNode(node: TreeNode) {
+    if (node === null) {
+      return;
+    }
+    this.inOrderWithNode(node.left);
+    console.log(node.e);
+    this.inOrderWithNode(node.right);
+  }
+  
+  // 后序遍历
+  public postOrder(): void {
+    this.postOrderWithNode(this.root);
+  }
+  
+  private postOrderWithNode(node: TreeNode) {
+    if (node === null) {
+      return;
+    }
+    this.postOrderWithNode(node.left);
+    this.postOrderWithNode(node.right);
+    console.log(node.e)
+  }
+  
   public toString(): string {
     this.generateBSTString(this.root, 0);
     return this.res.toString();
@@ -137,6 +166,7 @@ class BST {
     }
     return res.toString();
   }
+  
 }
 
 // 测试用例
@@ -145,5 +175,10 @@ const nums = [5, 3, 6, 8, 4, 2];
 for (const num of nums) {
   bst.add(num);
 }
+console.log('前序遍历');
 bst.preOrder();
-console.log(bst.toString())
+// console.log(bst.toString())
+console.log('中序遍历'); //排序后的结果
+bst.inOrder();
+console.log('后序遍历'); //可以用来释放内存
+bst.postOrder();
