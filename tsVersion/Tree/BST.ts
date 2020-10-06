@@ -13,7 +13,7 @@ class TreeNode {
 class BST {
   private root: TreeNode;
   private size: number;
-  
+  private res: string = '';
   constructor() {
     this.root = null;
     this.size = 0;
@@ -80,22 +80,70 @@ class BST {
     }
     return node;
   }
-
+  
   // 看二分搜索树中是否包含元素e
   public contains(e: number): boolean {
     return this.containsWithNode(this.root, e);
   }
+  
   // 看以node为根的二分搜索树中是否含有元素e，递归
   private containsWithNode(node: TreeNode, e: number): boolean {
-    if(node === null) {
+    if (node === null) {
       return false;
     }
-    if(e === node.e) {
+    if (e === node.e) {
       return true;
-    }else if(e < node.e){
+    } else if (e < node.e) {
       return this.containsWithNode(node.left, e);
-    }else {
+    } else {
       return this.containsWithNode(node.right, e);
     }
   }
+  
+  // 前序遍历
+  public preOrder(): void {
+    this.preOrderWithNode(this.root)
+  }
+  
+  private preOrderWithNode(node: TreeNode): void {
+    if (node === null) {
+      return;
+    }
+    console.log(node.e);
+    this.preOrderWithNode(node.left);
+    this.preOrderWithNode(node.right);
+  }
+  
+  public toString(): string {
+    this.generateBSTString(this.root, 0);
+    return this.res.toString();
+  }
+  
+  // 生成以node为节点，深度为depth的描述二叉树的字符串
+  private generateBSTString(node: TreeNode, depth: number): void {
+    if (node === null) {
+      this.res += this.generateDepthString(depth) + 'null\n';
+      return;
+    }
+    this.res += this.generateDepthString(depth) + node.e + '\n';
+    this.generateBSTString(node.left, depth + 1);
+    this.generateBSTString(node.right, depth + 1);
+  }
+  
+  private generateDepthString(depth: number): string {
+    let res = '';
+    for (let i = 0; i < depth; i++) {
+      res += '--'
+    }
+    return res.toString();
+  }
 }
+
+// 测试用例
+const bst = new BST();
+const nums = [5, 3, 6, 8, 4, 2];
+for (const num of nums) {
+  bst.add(num);
+}
+bst.preOrder();
+console.log(bst.toString())
