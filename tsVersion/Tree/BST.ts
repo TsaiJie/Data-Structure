@@ -28,7 +28,6 @@ class BST {
   }
   
   // 向二分搜索树中添加新的元素e
-  
   public add(e: number): void {
     if (this.root === null) {
       this.root = new TreeNode(e);
@@ -61,8 +60,24 @@ class BST {
       // 当e大于当前节点，并且右孩子不为空时，继续往下查找
       this.addWithNode(node.right, e);
     }
-    
-    
   }
   
+  // 向二分搜索树中添加新的元素e, 第二种方法
+  public add2(e: number): void {
+    this.root = this.addWithNode2(this.root, e);
+  }
+  
+  // 向二分搜索树中添加新元素e，返回出入新节点后二分搜索树的根
+  private addWithNode2(node: TreeNode, e: number) {
+    if (node === null) {
+      this.size++;
+      return new TreeNode(e);
+    }
+    if (e < node.e) {
+      node.left = this.addWithNode2(node.left, e);
+    } else if (e > node.e) {
+      node.right = this.addWithNode2(node.right, e);
+    }
+    return node;
+  }
 }
